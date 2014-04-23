@@ -9,7 +9,8 @@ Our objectives are
 - generate a local bib file from the global file by reading the tex requirements;
 - set a naming convention for references;
 - estabilish a user reviewed global repository of references;
-- sync with a remote global repository for all validated references.
+- sync with a remote global repository for all validated references;
+- manually add a reference.
 
 ## License
 
