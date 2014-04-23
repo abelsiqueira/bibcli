@@ -1,22 +1,30 @@
 #!/usr/bin/ruby -w
 
 require 'bibtex'
+require 'json'
 
-bib = BibTeX.open('db/test.bib')
+def open_bib(filename)
+  bib = BibTeX.open(filename)
 
-puts '{'
-bib.each_with_index { |entry,index|
-  puts '  "' + entry.key + '": {'
-  array = Array.new
-  entry.each { |key,value|
-     array.push '    "' + key.to_s + '": "' + value.to_s + '"'
+  json = {}
+  bib.each { |entry|
+    json[entry.key] = {}
+    entry.each { |key,value|
+      json[entry.key][key] = value.to_s
+    }
   }
-  puts array.join(",\n")
-  if index == bib.size-1
-    puts '  }'
-  else
-    puts '  },'
-    puts ''
-  end
-}
-puts '}'
+  json
+end
+
+def print_json(json)
+  puts JSON.pretty_generate(json)
+end
+
+def write_json(filename, json)
+  open(filename, 'w') { |file|
+    file.write(JSON.pretty_generate(json))
+  }
+end
+
+json = open_bib('db/test.bib')
+write_json('db/test.db', json)
