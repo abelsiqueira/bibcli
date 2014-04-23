@@ -1,0 +1,17 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[numbers,sort&compress]{natbib}
+
+\begin{document}
+
+This tests whether we can generate the bibtex file.
+First test: \cite{bib:dcicpp}.
+Second test: \cite{bib:gotoblas} and \cite{bib:lancelot}.
+Third test: \cite{bib:book-nocedal,bib:steihaug, bib:hs}.
+
+\bibliographystyle{siam}
+\bibliography{test}
+
+\end{document}

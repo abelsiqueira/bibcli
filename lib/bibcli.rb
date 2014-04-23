@@ -21,6 +21,8 @@ module Bibcli
       args = args[1,args.length]
       if cmd == "add"
         Bibcli::Commands::Add.process(args)
+      elsif cmd == "generate"
+        Bibcli::Commands::Generate.process(args)
       elsif cmd == "show"
         Bibcli::Commands::Show.process(args)
       else
