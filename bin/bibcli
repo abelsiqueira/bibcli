@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
 
 require 'bibcli'
-puts Bibcli.hi
+
+Bibcli::Interface.parse(ARGV)

@@ -7,7 +7,8 @@ Gem::Specification.new do |s|
   s.description = "Command line reference manager"
   s.authors = ["Abel Soares Siqueira"]
   s.email = "abel.s.siqueira@gmail.com"
-  s.files = ["lib/bibcli.rb"]
+
+  s.files = `git ls-files lib`.split($/)
   s.homepage = 'http://github.com/abelsiqueira/bibcli'
   s.license = 'GPLv3'
 end
