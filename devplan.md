@@ -22,7 +22,7 @@ Global machine database for the user required references.
 
 ## Use
 
-- `$ bibtex generate bibtex`
-- `$ bibtex search keyword`
-- `$ bibtex remote search keyword`
-- `$ bibtex add [class]`
+- `$ bibcli generate TEX`
+- `$ bibcli search keyword`
+- `$ bibcli remote search keyword`
+- `$ bibcli add [class]`
