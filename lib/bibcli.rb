@@ -13,6 +13,8 @@ module Bibcli
     @@homefile = ENV['HOME'] + '/.bibcli/user.db'
 
     def self.parse(args)
+      self.initialize
+
       if args.length == 0
         self.usage
         return
@@ -27,6 +29,16 @@ module Bibcli
         Bibcli::Commands::Show.process(args)
       else
         puts "ERROR: Unrecognized command: '#{cmd}'"
+      end
+    end
+
+    def self.initialize
+      dir = ENV['HOME'] + '/.bibcli'
+      `mkdir -p #{dir}`
+      unless File.exist?(@@homefile)
+        open(@@homefile,'w') { |file|
+          file.write("{\n}")
+        }
       end
     end
 
