@@ -7,6 +7,8 @@ Gem::Specification.new do |s|
   s.description = "Command line reference manager"
   s.authors = ["Abel Soares Siqueira"]
   s.email = "abel.s.siqueira@gmail.com"
+  s.add_dependency 'bibtex-ruby', '~> 3.1'
+  s.add_dependency 'json', '~> 1.8'
 
   s.files = `git ls-files lib`.split($/)
   s.homepage = 'http://github.com/abelsiqueira/bibcli'

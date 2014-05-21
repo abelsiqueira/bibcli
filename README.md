@@ -20,7 +20,8 @@ This work is licensed under GPL v3.0. See LICENSE.
 
 You will need ruby and gems. Obtain them however you want.
 
-Now you need 'bibtex-ruby' and 'json'
+The following commands install bibcli and the dependencies 'bibtex-ruby' and
+'json'.
 
     $ gem install bibtex-ruby
     $ gem install json
