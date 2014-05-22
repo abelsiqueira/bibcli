@@ -13,40 +13,47 @@ require_all 'bibcli/commands'
 module Bibcli
   class Interface
     @@homefile = ENV['HOME'] + '/.bibcli/user.db'
-    attr_reader :homefile
 
-    def self.parse(args)
-      self.initialize
+    class << self
 
-      if args.length == 0
-        self.usage
-        return
+      def parse(args)
+        self.initialize
+
+        if args.length == 0
+          self.usage
+          return
+        end
+        cmd = args[0]
+        args = args[1,args.length]
+        if cmd == "add"
+          Bibcli::Commands::Add.process(args)
+        elsif cmd == "generate"
+          Bibcli::Commands::Generate.process(args)
+        elsif cmd == "show"
+          Bibcli::Commands::Show.process(args)
+        else
+          puts "ERROR: Unrecognized command: '#{cmd}'"
+        end
       end
-      cmd = args[0]
-      args = args[1,args.length]
-      if cmd == "add"
-        Bibcli::Commands::Add.process(args)
-      elsif cmd == "generate"
-        Bibcli::Commands::Generate.process(args)
-      elsif cmd == "show"
-        Bibcli::Commands::Show.process(args)
-      else
-        puts "ERROR: Unrecognized command: '#{cmd}'"
-      end
-    end
 
-    def self.initialize
-      dir = ENV['HOME'] + '/.bibcli'
-      `mkdir -p #{dir}`
-      unless File.exist?(@@homefile)
-        open(@@homefile,'w') { |file|
-          file.write("{\n}")
-        }
+      def initialize
+        dir = ENV['HOME'] + '/.bibcli'
+        `mkdir -p #{dir}`
+        unless File.exist?(@@homefile)
+          open(@@homefile,'w') { |file|
+            file.write("{\n}")
+          }
+        end
       end
-    end
 
-    def self.usage
-      puts "bibcli: usage"
+      def usage
+        puts "bibcli: usage"
+      end
+
+      def homefile
+        @@homefile
+      end
+
     end
 
   end

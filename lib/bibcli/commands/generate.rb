@@ -23,7 +23,6 @@ module Bibcli
           refs.uniq!
           homebib = Bibcli::Parser.opendb(Bibcli::Interface.homefile)
           refs.each { |key|
-            puts key
             homebib.each { |type,info|
               if homebib[type][key]
                 puts "@#{type}{#{key},"
@@ -39,6 +38,7 @@ module Bibcli
             }
           }
         end
+
       end
 
     end
