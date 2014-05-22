@@ -22,6 +22,8 @@ module Bibcli
             open(Bibcli::Interface.homefile, 'w') { |file|
               file.write(JSON.pretty_generate(homebib))
             }
+          else
+            raise "ERROR: command not found"
           end
         end
 

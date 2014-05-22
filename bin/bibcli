@@ -2,4 +2,8 @@
 
 require 'bibcli'
 
-Bibcli::Interface.parse(ARGV)
+begin
+  Bibcli::Interface.parse(ARGV)
+rescue => e
+  puts e
+end

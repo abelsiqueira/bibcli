@@ -23,19 +23,18 @@ module Bibcli
           refs.uniq!
           homebib = Bibcli::Parser.opendb(Bibcli::Interface.homefile)
           refs.each { |key|
+            output = []
             homebib.each { |type,info|
               if homebib[type][key]
                 puts "@#{type}{#{key},"
-                output = []
                 info[key].each { |k,v|
                   output << "  #{k} = \"#{v}\""
                 }
-                puts output.join(",\n")
-                puts "}\n\n"
-              else
-                puts "ERROR: key \"#{key}\" not found."
               end
             }
+            raise "ERROR: \"#{key}\" not found" if output.empty?
+            puts output.join(",\n")
+            puts "}\n\n"
           }
         end
 
