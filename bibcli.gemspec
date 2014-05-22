@@ -1,16 +1,26 @@
-Gem::Specification.new do |s|
-  s.name = 'bibcli'
-  s.version = '0.0.0'
-  s.executables << 'bibcli'
-  s.date = '2014-04-23'
-  s.summary = "Bibcli"
-  s.description = "Command line reference manager"
-  s.authors = ["Abel Soares Siqueira"]
-  s.email = "abel.s.siqueira@gmail.com"
-  s.add_dependency 'bibtex-ruby', '~> 3.1'
-  s.add_dependency 'json', '~> 1.8'
+#coding: utf-8
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'bibcli/version'
 
-  s.files = `git ls-files lib`.split($/)
-  s.homepage = 'http://github.com/abelsiqueira/bibcli'
-  s.license = 'GPLv3'
+Gem::Specification.new do |spec|
+  spec.name          = 'bibcli'
+  spec.version       = Bibcli::VERSION
+  spec.authors       = ["Abel Soares Siqueira"]
+  spec.email         = ["abel.s.siqueira@gmail.com"]
+  spec.summary       = "Bibcli"
+  spec.description   = "Command line reference manager"
+  spec.homepage      = 'http://github.com/abelsiqueira/bibcli'
+  spec.license       = 'GPLv3'
+
+  spec.files         = `git ls-files -z`.split("\x0")
+  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.require_paths = ["lib"]
+
+  spec.add_development_dependency "bundler", "~> 1.6"
+  spec.add_development_dependency "rake"
+
+  spec.add_runtime_dependency 'bibtex-ruby', '~> 3.1'
+  spec.add_runtime_dependency 'json', '~> 1.8'
 end

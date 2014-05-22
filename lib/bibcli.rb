@@ -1,3 +1,5 @@
+require "bibcli/version"
+
 def require_all(path)
   glob = File.join(File.dirname(__FILE__), path, '*.rb')
   Dir[glob].each do |f|
@@ -11,6 +13,7 @@ require_all 'bibcli/commands'
 module Bibcli
   class Interface
     @@homefile = ENV['HOME'] + '/.bibcli/user.db'
+    attr_reader :homefile
 
     def self.parse(args)
       self.initialize
@@ -44,10 +47,6 @@ module Bibcli
 
     def self.usage
       puts "bibcli: usage"
-    end
-
-    def self.homefile
-      @@homefile
     end
 
   end
