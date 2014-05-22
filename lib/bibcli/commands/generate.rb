@@ -13,7 +13,7 @@ module Bibcli
           refs = []
           args.each do |filename|
             if File.exist?(filename)
-              src = File.open(filename).read().scan(/cite{([^}]+)}/)
+              src = File.open(filename).read().scan(/cite[[:alpha:]]*{([^}]+)}/)
               src.each { |x|
                 x[0].split(',').each { |a| refs << a.strip }
               }

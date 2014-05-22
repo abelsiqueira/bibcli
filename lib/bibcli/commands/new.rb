@@ -37,8 +37,7 @@ module Bibcli
           bib = BibTeX::Entry.new(entry).parse_names
           homebib = Bibcli::Parser.opendb(Bibcli::Interface.homefile)
 
-          #key = Bibcli::Parser.generate_key(bib)
-          key = "teste"
+          key = Bibcli::Parser.generate_key(bib)
           type = bib.type.to_s
           homebib[type] = {} unless homebib[type]
           homebib[type][key] = {} unless homebib[type][key]
