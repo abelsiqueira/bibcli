@@ -10,12 +10,12 @@ module Bibcli
             bib = Bibcli::Parser.openbib(filename)
             homebib = Bibcli::Parser.opendb(Bibcli::Interface.homefile)
 
-            bib.each { |key, value|
-              key = key.to_s
-              if homebib[key] == nil
-                homebib[key] = value
+            bib.each { |type, value|
+              type = type.to_s
+              if homebib[type] == nil
+                homebib[type] = value
               else
-                homebib[key].merge!(value)
+                homebib[type].merge!(value)
               end
             }
 

@@ -31,6 +31,14 @@ module Bibcli
         }
       end
 
+      def generate_key(entry)
+        #bib:LastNameYearTitle
+        lastname = entry["author"].split(',')[0]
+        year = entry["year"]
+        title = entry["title"].split(/[^[:alnum:]]/).select{|x|x.length>3}[0]
+        lastname.downcase + year + title.downcase
+      end
+
     end
 
   end

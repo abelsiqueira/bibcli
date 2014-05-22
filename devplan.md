@@ -33,9 +33,9 @@ There are many things to do:
 
 ## Use
 
-> [ ] `$ bibcli add CLASS`
+> [ ] `$ bibcli new TYPE`
 
-> > Creates a new bibliography entry of type CLASS and add to database.
+> > Creates a new bibliography entry of type TYPE and add to database.
 
 > [x] `$ bibcli add FILE`
 
@@ -54,9 +54,9 @@ There are many things to do:
 
 > > Show the bibliography on bibtex FILE on a pretty format.
 
-> [x] `$ bibcli show CLASS`
+> [x] `$ bibcli show TYPE`
 
-> > Show all entries on the database from class CLASS.
+> > Show all entries on the database from type TYPE.
 
 > [ ] `$ bibcli search KEY VALUE`
 
