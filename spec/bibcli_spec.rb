@@ -24,4 +24,12 @@ describe Bibcli do
       expect(testbib["article"]["siqueira2014first"]).to eq(expected)
     end
   end
+
+  describe Bibcli::Commands do
+    it "test if generate works" do
+      text = '\cite{a} \citet{b} \citeauthor{c} \cite{d,e}'
+      expect(Bibcli::Commands::Generate.get_keys(text)).to eq(('a'..'e').to_a)
+    end
+  end
+
 end

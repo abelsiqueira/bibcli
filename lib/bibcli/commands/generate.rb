@@ -10,17 +10,24 @@ module Bibcli
             return
           end
 
-          refs = []
           args.each do |filename|
             if File.exist?(filename)
-              src = File.open(filename).read().scan(/cite[[:alpha:]]*{([^}]+)}/)
-              src.each { |x|
-                x[0].split(',').each { |a| refs << a.strip }
-              }
+              refs = get_keys(File.open(filename).read())
+              print_from_keys(refs)
             end
           end
+        end
 
-          refs.uniq!
+        def get_keys(text)
+          refs = []
+          src = text.scan(/cite[[:alpha:]]*{([^}]+)}/)
+          src.each { |x|
+            x[0].split(',').each { |a| refs << a.strip }
+          }
+          refs.uniq
+        end
+
+        def print_from_keys(refs)
           homebib = Bibcli::Parser.opendb(Bibcli::Interface.homefile)
           refs.each { |key|
             output = []
