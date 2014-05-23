@@ -31,6 +31,8 @@ module Bibcli
           Bibcli::Commands::Generate.process(args)
         elsif cmd == "new"
           Bibcli::Commands::New.process(args)
+        elsif cmd == "search"
+          Bibcli::Commands::Search.process(args)
         elsif cmd == "show"
           Bibcli::Commands::Show.process(args)
         else
