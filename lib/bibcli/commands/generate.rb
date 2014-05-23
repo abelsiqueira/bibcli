@@ -6,7 +6,7 @@ module Bibcli
 
         def process(args)
           if args.length == 0
-            puts "ERROR: generate needs a .tex argument"
+            raise "ERROR: generate needs a .tex argument"
             return
           end
 
@@ -20,7 +20,7 @@ module Bibcli
 
         def get_keys(text)
           refs = []
-          src = text.scan(/cite[[:alpha:]]*{([^}]+)}/)
+          src = text.scan(/cite[[:alpha:]*]*{([^}]+)}/)
           src.each { |x|
             x[0].split(',').each { |a| refs << a.strip }
           }
