@@ -24,13 +24,15 @@ module Bibcli
           return
         end
         cmd = args[0]
-        args = args[1,args.length]
+        args.shift
         if cmd == "add"
           Bibcli::Commands::Add.process(args)
         elsif cmd == "generate"
           Bibcli::Commands::Generate.process(args)
         elsif cmd == "new"
           Bibcli::Commands::New.process(args)
+        elsif cmd == "sanitize"
+          Bibcli::Commands::Sanitize.process(args)
         elsif cmd == "search"
           Bibcli::Commands::Search.process(args)
         elsif cmd == "show"

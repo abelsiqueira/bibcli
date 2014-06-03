@@ -32,11 +32,15 @@ module Bibcli
       end
 
       def generate_key(entry)
+        require 'i18n'
         #bib:LastNameYearTitle
         lastname = entry["author"].split(',')[0]
+        lastname.gsub!('ç','cc')
+        lastname = I18n.transliterate(lastname.downcase)
         year = entry["year"]
         title = entry["title"].split(/[^[:alnum:]]/).select{|x|x.length>3}[0]
-        lastname.downcase + year + title.downcase
+        title = I18n.transliterate(title.downcase)
+        lastname + year + title
       end
 
     end
