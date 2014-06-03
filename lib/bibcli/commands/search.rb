@@ -20,7 +20,7 @@ module Bibcli
           results = {}
           homebib.each { |type,content|
             content.select { |key,entry|
-              if entry.map { |k,v|
+              if key.include?(keyword.downcase) or entry.map { |k,v|
                   v.downcase.include?(keyword.downcase)
                   }.inject(false) { |r,t| r = r or t }
                 results[type] = {} unless results[type]
