@@ -11,7 +11,7 @@ module Bibcli
           if results.empty?
             puts "No match for keyword '#{keyword}'"
           else
-            puts JSON.pretty_generate(results)
+            Pretty.print(results)
           end
         end
 
