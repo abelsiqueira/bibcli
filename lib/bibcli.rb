@@ -25,17 +25,14 @@ module Bibcli
         end
         cmd = args[0]
         args = args[1,args.length]
-        if cmd == "add"
-          Bibcli::Commands::Add.process(args)
-        elsif cmd == "generate"
-          Bibcli::Commands::Generate.process(args)
-        elsif cmd == "new"
-          Bibcli::Commands::New.process(args)
-        elsif cmd == "search"
-          Bibcli::Commands::Search.process(args)
-        elsif cmd == "show"
-          Bibcli::Commands::Show.process(args)
-        else
+        if Command.subclasses.select { |scmd|
+          if cmd == scmd.to_s.split('::')[-1].downcase
+            scmd.process(args)
+            true
+          else
+            false
+          end
+        }.empty?
           puts "ERROR: Unrecognized command: '#{cmd}'"
         end
       end
@@ -51,7 +48,11 @@ module Bibcli
       end
 
       def usage
-        puts "bibcli: usage"
+        puts "BibCLI"
+        puts "  Commands:"
+        Command.subclasses.each { |cmd|
+          puts "  - #{cmd.to_s.split('::')[-1].downcase}"
+        }
       end
 
       def homefile

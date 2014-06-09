@@ -2,6 +2,7 @@ module Bibcli
   class Command
 
     class << self
+      attr_reader :subclasses
 
       def subclasses
         @subclasses ||= []

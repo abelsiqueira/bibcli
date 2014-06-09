@@ -8,7 +8,7 @@ module Bibcli
           if args[0] == "file"
             addfile(args[1])
           else
-            raise "ERROR: command not found"
+            raise "ERROR in add: command not found"
           end
         end
 
