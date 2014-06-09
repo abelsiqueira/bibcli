@@ -24,7 +24,7 @@ module Bibcli
           return
         end
         cmd = args[0]
-        args = args[1,args.length]
+        args.shift
         if Command.subclasses.select { |scmd|
           if cmd == scmd.to_s.split('::')[-1].downcase
             scmd.process(args)
