@@ -33,11 +33,16 @@ module Bibcli
 
       def generate_key(entry)
         require 'i18n'
+        I18n.enforce_available_locales = false
         #bib:LastNameYearTitle
-        lastname = entry["author"].split(',')[0]
+        if entry["author"]
+          lastname = entry["author"].split(',')[0]
+        else
+          lastname = "misc"
+        end
         lastname.gsub!('ç','cc')
         lastname = I18n.transliterate(lastname.downcase)
-        year = entry["year"]
+        year = entry["year"] || "noyear"
         title = entry["title"].split(/[^[:alnum:]]/).select{|x|x.length>3}[0]
         title = I18n.transliterate(title.downcase)
         lastname + year + title

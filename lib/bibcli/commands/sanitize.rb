@@ -16,10 +16,10 @@ module Bibcli
           homebib = Parser.opendb(Bibcli::Interface.homefile)
 
           homebib = homebib.map { |type, content|
-            content.map { |key, entry|
+            [type, content.map { |key, entry|
               [Parser.generate_key(entry), entry]
-            }.to_h
-          }
+            }.to_h]
+          }.to_h
 
           open(Bibcli::Interface.homefile, 'w') { |file|
             file.write(JSON.pretty_generate(homebib))

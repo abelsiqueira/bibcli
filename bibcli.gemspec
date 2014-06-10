@@ -24,4 +24,5 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'bibtex-ruby', '~> 3.1'
   spec.add_runtime_dependency 'json', '~> 1.8'
+  spec.add_runtime_dependency 'i18n', '~> 0.6'
 end
